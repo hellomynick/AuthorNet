@@ -12,15 +12,16 @@ namespace YourAPI.ApiIntergration
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<List<Author>> GetAuthor()
-        {
-            var data = await GetListAsync<Author>("authors/");
-            return data;
-        }
 
         public async Task<Author> GetAuthorById(int id)
         {
-            var data = await GetAsync<Author>($"authors/{id}");
+            var data = await GetAsync<Author>($"/authors/{id}");
+            return data;
+        }
+
+        public async Task<Author> GetBookByAuthorId(int id)
+        {
+            var data = await GetAsync<Author>($"/authors/{id}/books");
             return data;
         }
     }

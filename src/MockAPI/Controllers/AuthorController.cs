@@ -4,7 +4,7 @@ using MockAPI.Services;
 namespace MockAPI.Controllers;
 
 [ApiController]
-[Route("authors")]
+[Route("authors/")]
 public class AuthorController : ControllerBase
 {
     private readonly DataStore _dataStore;

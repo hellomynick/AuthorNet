@@ -24,10 +24,10 @@ public class AuthorReportingController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAuthor()
+    public async Task<IActionResult> GetAuthor(int id)
     {
-        var author = await _authorApiClient.GetAuthor();
+        var author = await _authorApiClient.GetAuthorById(id);
 
-        return Ok(author);
+        return Ok(author.Books);
     }
 }
