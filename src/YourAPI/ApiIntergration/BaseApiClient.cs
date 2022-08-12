@@ -21,14 +21,11 @@ namespace YourAPI.ApiIntergration
             var client = _httpClientFactory.CreateClient("MockAPI");
             client.BaseAddress = new Uri("http://localhost:5555");
             var response = await client.GetAsync(url);
-            var body = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
+            if (!response.IsSuccessStatusCode)
             {
-                TResponse myDeserializedObjList = (TResponse)JsonConvert.DeserializeObject(body,
-                    typeof(TResponse));
-
-                return myDeserializedObjList;
+                throw new ApiException(url);
             }
+            var body = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<TResponse>(body);
         }
 

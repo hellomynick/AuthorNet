@@ -13,6 +13,12 @@ namespace YourAPI.ApiIntergration
         }
 
 
+        public async Task<List<Author>> GetAuthors()
+        {
+            var data = await GetListAsync<Author>($"/authors/");
+            return data;
+        }
+
         public async Task<Author> GetAuthorById(int id)
         {
             var data = await GetAsync<Author>($"/authors/{id}/");
